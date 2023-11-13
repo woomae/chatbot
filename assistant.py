@@ -9,6 +9,7 @@ def callchat(message):
     client = OpenAI(
         api_key=os.environ['OPENAI_API_KEY'],
     )
+    
     #스레드 생성,연결(runs)
     run = client.beta.threads.create_and_run(
         assistant_id="asst_FPg6Rlt9WKrgjROV07Du4joO", #본인 assistant id 입력
@@ -18,8 +19,8 @@ def callchat(message):
         ]
         }
     )
-    #3초 대기
-    time.sleep(3)
+    #5초 대기
+    time.sleep(5)
     #실행 단계 나열
     run_steps = client.beta.threads.runs.steps.list(
         thread_id=run.thread_id,
