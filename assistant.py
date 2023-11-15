@@ -1,8 +1,9 @@
 import os
+import json
 import time
 from openai import OpenAI
 from dotenv import load_dotenv
-
+from collections import OrderedDict
 
 def callchat(message):
     load_dotenv()
@@ -37,4 +38,14 @@ def callchat(message):
         message_id=run_step.step_details.message_creation.message_id,
         thread_id=run.thread_id,
     )
-    return message.content[0].text.value
+    response = message.content[0].text.value
+    build_dict = OrderedDict([
+    ("statusCode", 200),
+    ("message", "api.common.ok"),
+    ("data", {
+        "reply": response
+    })
+    ])
+    converte_json = json.dumps(build_dict, indent=2)
+    print(converte_json)
+    return converte_json
