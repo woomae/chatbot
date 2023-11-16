@@ -40,9 +40,9 @@ def callchat(message):
     )
     response = message.content[0].text.value
     build_dict = OrderedDict([
-    ("statusCode", 200),
+    ("code", 200),
     ("message", "api.common.ok"),
-    ("data", {
+    ("result", {
         "reply": response
     })
     ])
